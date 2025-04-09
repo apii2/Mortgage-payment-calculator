@@ -24,77 +24,100 @@
       --color-slate-500: hsl(200, 26%, 54%);
       --color-slate-700: hsl(200, 24%, 40%);
       --color-slate-900: hsl(202, 55%, 16%);
+      --color-slate-1000: hsl(202, 55%, 12%);
       --font-sans: 'Plus Jakarta Sans', sans-serif;
     }
+
+    @custom-variant error (&.error);
   </style>
 </head>
 <body class="min-h-[100vh] flex items-center justify-center font-sans bg-slate-100">
-  <main class="grid grid-rows-[70%_30%] sm:grid-cols-2 sm:grid-rows-1 bg-white
+  <main class="grid grid-rows-[61%_1fr] sm:grid-cols-2 sm:grid-rows-1 bg-white
     min-h-[100vh] sm:min-h-[70vh] sm:min-w-md sm:max-w-4xl sm:rounded-2xl sm:shadow-xl sm:shadow-[hsl(202, 86%, 94%)] sm:overflow-hidden">
 
-    <section class="p-8">
-      <header class="flex justify-between items-center mb-6">
+    <section class="py-8 sm:py-10 px-10">
+      <header class="block sm:flex justify-between items-center mb-3 sm:mb-6 space-y-1 sm:space-y-0">
         <h2 class="text-xl font-bold tracking-[0.75px] text-slate-900">Mortgage Calculator</h2>
         <button class="text-sm underline text-slate-700 hover:text-slate-900">Clear All</button>
       </header>
     
       <form name="myForm" class="space-y-4">
-        <article class="flex flex-col gap-2">
+        <article class="amount flex flex-col gap-2">
           <label for="amount" class="text-sm text-slate-700 font-medium">Mortgage Amount</label>
 
-          <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[8%_1fr] items-center 
-            bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime">
+          <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[14%_1fr] sm:grid-cols-[8%_1fr] items-center 
+            bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime error:ring-red error:bg-red error:[&_p]:text-white">
             <p class="text-center text-sm text-slate-700 font-bold">&#163;</p>
-            <input type="number" name="amount" id="amount" 
+            <input type="number" name="amount" id="amount" min="0"
               class="h-full bg-white focus-visible:outline-none ps-3 text-sm text-slate-900 font-bold">
           </div>
+
+          <div class="err hidden text-red text-xs font-bold">This field is required</div>
         </article>
         
-        <section class="grid grid-cols-2 gap-6">
-          <article class="flex flex-col gap-2">
+        <section class="grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-6">
+          <article class="time flex flex-col gap-2">
             <label for="time" class="text-sm text-slate-700 font-medium">Mortgage Term</label>
 
-            <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[66%_auto] items-center 
-              bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime">
-              <input type="number" name="time" id="time" 
+            <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[75%_auto] sm:grid-cols-[66%_auto] items-center 
+              bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime error:ring-red error:bg-red error:[&_p]:text-white">
+              <input type="number" name="time" id="time" min="0"
                 class="h-full bg-white focus-visible:outline-none ps-3 text-sm text-slate-900 font-bold">
               <p class="text-center text-sm text-slate-700 font-bold">years</p>
             </div>
+
+            <div class="err hidden text-red text-xs font-bold">This field is required</div>
           </article>
           
-          <article class="flex flex-col gap-2">
+          <article class="rate flex flex-col gap-2">
             <label for="rate" class="text-sm text-slate-700 font-medium">Interest Rate</label>
 
-            <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[80%_auto] items-center 
-            bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime">
-              <input type="number" name="rate" id="rate" 
+            <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[86%_auto] sm:grid-cols-[80%_auto] items-center 
+            bg-slate-100 overflow-hidden focus-within:ring-lime focus-within:bg-lime error:ring-red error:bg-red error:[&_p]:text-white">
+              <input type="number" name="rate" id="rate" step=".01" min="0"
                 class="h-full bg-white focus-visible:outline-none ps-3 text-sm text-slate-900 font-bold">
               <p class="text-center text-sm text-slate-700 font-bold">&#37;</p>
             </div>
+
+            <div class="err hidden text-red text-xs font-bold">This field is required</div>
           </article>
         </section>
         
-        <article class="flex flex-col gap-2">
+        <article class="type flex flex-col gap-2">
           <h4 class="text-sm text-slate-700 font-medium">Mortgage Type</h4>
 
-          <label class="type flex items-center gap-3 h-8 ring-2 ring-slate-300 rounded-sm ps-3 text-slate-900">
-            <input type="radio" name="type" id="repayment" value="repayment" class="">
-            <p for="repayment" class="text-sm w-full font-bold">Repayment</p>
+          <label for="repayment" class="flex items-center gap-3 h-8 ring-2 ring-slate-300 rounded-sm ps-3 text-slate-900 has-[input:checked]:ring-lime has-[input:checked]:bg-lime/15">
+            <input type="radio" name="type" id="repayment" value="repayment" class="hidden peer">
+
+            <div class="relative w-3 h-3 rounded-full border border-slate-900 p-1 peer-checked:border-lime peer-checked:[&>span]:bg-lime">
+              <span class="absolute w-[0.4rem] h-[0.4rem] top-0 bottom-0 left-0 right-0 m-auto rounded-full bg-transparent"></span>
+            </div>
+
+            <p class="text-sm w-full font-bold">Repayment</p>
           </label>
-          <label class="flex items-center gap-3 h-8 ring-2 ring-slate-300 rounded-sm ps-3 text-slate-900">
-            <input type="radio" name="type" id="interest_only" value="interest_only" class="">
-            <p for="interest_only" class="text-sm w-full font-bold">Interest Only</p>
+
+          <label for="interest_only" class="flex items-center gap-3 h-8 ring-2 ring-slate-300 rounded-sm ps-3 text-slate-900 has-[input:checked]:ring-lime has-[input:checked]:bg-lime/15">
+            <input type="radio" name="type" id="interest_only" value="interest_only" class="hidden peer">
+
+            <div class="relative w-3 h-3 rounded-full border border-slate-900 p-1 peer-checked:border-lime peer-checked:[&>span]:bg-lime">
+              <span class="absolute w-[0.4rem] h-[0.4rem] top-0 bottom-0 left-0 right-0 m-auto rounded-full bg-transparent"></span>
+            </div>
+
+            <p class="text-sm w-full font-bold">Interest Only</p>
           </label>
+
+          <div class="err hidden text-red text-xs font-bold">This field is required</div>
         </article>
         
-        <article>
+        <button type="submit" class="flex items-center gap-2 cursor-pointer text-sm font-bold text-slate-900 bg-lime px-6 py-2 rounded-3xl sm:mt-8">
+          <img src="./assets/images/icon-calculator.svg" alt="Calculator icon" class="w-4 h-4">
           Calculate Repayments
-        </article>
+        </button>
       </form>
     </section>
 
-    <section class="empty bg-slate-900 text-white rounded-es-[4rem] overflow-hidden flex flex-col items-center justify-center p-8 space-y-3">
-      <img src="/assets/images/illustration-empty.svg" alt="Image of calculator" class="w-40 aspect-square text-slate-100">
+    <section class="empty bg-slate-900 text-white sm:rounded-es-[4rem] overflow-hidden flex flex-col items-center justify-center py-8 sm:py-10 px-10 space-y-3">
+      <img src="/assets/images/illustration-empty.svg" alt="Image of calculator" class="w-35 sm:w-40 aspect-square text-slate-100">
       <header class="text-xl font-bold tracking-[0.75px]">Results shown here</header>
       <p class="text-sm text-slate-300 text-center">
         Complete the form and click “calculate repayments” to see what 
@@ -102,16 +125,26 @@
       </p>
     </section>
 
-    <section class="hidden completed">
-      Your results
+    <section class="completed hidden bg-slate-900 text-white sm:rounded-es-[4rem] overflow-hidden flex flex-col py-8 sm:py-10 px-10 space-y-3">
+      <header class="text-xl font-bold tracking-[0.75px]">Your results</header>
 
-      Your results are shown below based on the information you provided. 
-      To adjust the results, edit the form and click “calculate repayments” again.
+      <p class="text-sm text-slate-300 mb-8">
+        Your results are shown below based on the information you provided. 
+        To adjust the results, edit the form and click “calculate repayments” again.
+      </p>
     
-      <article>
-        Your monthly repayments
-        
-        Total you'll repay over the term
+      <article class="bg-slate-1000 border-t-4 border-t-lime px-5 py-4 rounded-md space-y-6">
+        <div class="space-y-2">
+          <p class="text-sm text-slate-300">Your monthly repayments</p>
+          <p class="mortgage_mon text-lime text-4xl font-bold">&#163;<span></span></p>
+        </div>
+
+        <hr class="bg-slate-900 h-[2px] border-none">
+
+        <div class="space-y-1">
+          <p class="text-sm text-slate-300">Total you'll repay over the term</p>
+          <p class="mortgage-tot text-base font-bold">&#163;<span></span></p>
+        </div>
       </article>
     </section>
   </main>
@@ -120,5 +153,7 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/apii2">Apeksha Shrestha</a>.
   </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
