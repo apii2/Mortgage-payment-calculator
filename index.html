@@ -31,7 +31,7 @@
 </head>
 <body class="min-h-[100vh] flex items-center justify-center font-sans bg-slate-100">
   <main class="grid grid-rows-[59%_1fr] sm:grid-cols-2 sm:grid-rows-1 bg-white
-    min-h-[100vh] sm:min-h-[70vh] sm:min-w-md sm:max-w-4xl sm:rounded-2xl sm:shadow-xl sm:shadow-[hsl(202, 86%, 94%)] sm:overflow-hidden">
+    min-h-[100vh] sm:min-h-[28.5rem] sm:min-w-md sm:max-w-4xl sm:rounded-2xl sm:shadow-xl sm:shadow-[hsl(202, 86%, 94%)] sm:overflow-hidden">
 
     <section class="py-5 sm:py-10 px-6 sm:px-10">
       <header class="block sm:flex justify-between items-center mb-3 sm:mb-6 space-y-1 sm:space-y-0">
@@ -40,7 +40,7 @@
       </header>
     
       <form name="myForm" class="space-y-4">
-        <article class="amount flex flex-col gap-2">
+        <fieldset class="amount flex flex-col gap-2">
           <label for="amount" class="text-sm text-slate-700 font-medium">Mortgage Amount</label>
 
           <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[14%_1fr] sm:grid-cols-[8%_1fr] items-center hover:ring-slate-500
@@ -51,10 +51,10 @@
           </div>
 
           <div class="err hidden text-red text-xs font-bold">This field is required</div>
-        </article>
+        </fieldset>
         
-        <section class="grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-6">
-          <article class="time flex flex-col gap-2">
+        <fieldset class="grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-6">
+          <section class="time flex flex-col gap-2">
             <label for="time" class="text-sm text-slate-700 font-medium">Mortgage Term</label>
 
             <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[75%_auto] sm:grid-cols-[66%_auto] items-center hover:ring-slate-500
@@ -65,9 +65,9 @@
             </div>
 
             <div class="err hidden text-red text-xs font-bold">This field is required</div>
-          </article>
+          </section>
           
-          <article class="rate flex flex-col gap-2">
+          <section class="rate flex flex-col gap-2">
             <label for="rate" class="text-sm text-slate-700 font-medium">Interest Rate</label>
 
             <div class="group h-8 ring-2 ring-slate-300 rounded-sm grid grid-cols-[86%_auto] sm:grid-cols-[80%_auto] items-center hover:ring-slate-500
@@ -78,10 +78,10 @@
             </div>
 
             <div class="err hidden text-red text-xs font-bold">This field is required</div>
-          </article>
-        </section>
+          </section>
+        </fieldset>
         
-        <article class="type flex flex-col gap-2">
+        <fieldset class="type flex flex-col gap-2">
           <h4 class="text-sm text-slate-700 font-medium">Mortgage Type</h4>
 
           <label for="repayment" class="flex items-center gap-3 h-8 ring-2 ring-slate-300 rounded-sm ps-3 text-slate-900 
@@ -107,7 +107,7 @@
           </label>
 
           <div class="err hidden text-red text-xs font-bold">This field is required</div>
-        </article>
+        </fieldset>
         
         <button type="submit" class="flex items-center gap-2 cursor-pointer text-sm font-bold text-slate-900 
           bg-lime hover:bg-lime/50 px-6 py-2 rounded-3xl sm:mt-8">
@@ -134,7 +134,7 @@
         To adjust the results, edit the form and click “calculate repayments” again.
       </p>
     
-      <article class="bg-slate-1000 border-t-4 border-t-lime px-5 py-4 rounded-md space-y-2 sm:space-y-6">
+      <div class="bg-slate-1000 border-t-4 border-t-lime px-5 py-4 rounded-md space-y-2 sm:space-y-6">
         <div class="space-y-2">
           <p class="text-sm text-slate-300">Your monthly repayments</p>
           <p class="mortgage_mon text-lime text-4xl font-bold">&#163;<span></span></p>
@@ -146,7 +146,7 @@
           <p class="text-sm text-slate-300">Total you'll repay over the term</p>
           <p class="mortgage-tot text-base font-bold">&#163;<span></span></p>
         </div>
-      </article>
+      </div>
     </section>
   </main>
   
